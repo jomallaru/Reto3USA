@@ -2,10 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <title>Retos USA</title>
+    <style>
+        table{
+            border: 1px solid black;
+            width: 100%;
+            table-layout: fixed;
+
+        }
+        th, td {
+            border: 1px solid;
+        }
+    </style>
 </head>
 <body>
-<h1>Frontend del Proyecto</h1>
+
+<h1>Reto 4</h1>
+<br>
+<br>
+<div class="container unauthenticated">
+    <table>
+        <tr>
+            <th>Primero, Inicia Sesion <a href="/oauth2/authorization/github">boton</a></th>
+        </tr>
+    </table>
+
+</div>
+<div class="container authenticated" style="display: none">
+    has sido autenticado: <span id="usuario"></span>
+    <button onclick="location.href='homePage.html';">Continuar </button>
+
+</div>
 
 </body>
+<script type="text/javascript">
+    $.get("/user",function (data){
+        $("#usuario").html(data.name);
+        $(".unauthenticated").hide();
+        $(".authenticated").show();
+        });
+
+</script>
 </html>
